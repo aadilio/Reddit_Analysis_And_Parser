@@ -1,4 +1,4 @@
-from __future__ import print_function
+parserfrom __future__ import print_function
 from pyspark import SparkConf, SparkContext
 from pyspark.sql import SQLContext
 from pyspark.sql.functions import *
@@ -42,7 +42,7 @@ def dem(context):
 
     #TASK 4 and TASK 5
     def do_something(text):
-        return cleantext.sanitize(text)
+        return parser.sanitize(text)
 
     udf_func = udf(do_something, ArrayType(StringType()))
     dfTask4 = dfTask2.withColumn("udf_results", udf_func(col("body")))
@@ -112,7 +112,7 @@ def dem(context):
 
     #TASK 4 and TASK 5
     def do_something(text):
-        return cleantext.sanitize(text)
+        return parser.sanitize(text)
 
     udf_func = udf(do_something, ArrayType(StringType()))
     dfTask9_1 = dfTask8.withColumn("udf_results", udf_func(col("body")))
@@ -175,7 +175,7 @@ def gop(context):
 
     #TASK 4 and TASK 5
     def do_something(text):
-        return cleantext.sanitize(text)
+        return parser.sanitize(text)
 
     udf_func = udf(do_something, ArrayType(StringType()))
     dfTask4 = dfTask2.withColumn("udf_results", udf_func(col("body")))
@@ -245,7 +245,7 @@ def gop(context):
 
     #TASK 4 and TASK 5
     def do_something(text):
-        return cleantext.sanitize(text)
+        return parser.sanitize(text)
 
     udf_func = udf(do_something, ArrayType(StringType()))
     dfTask9_1 = dfTask8.withColumn("udf_results", udf_func(col("body")))
@@ -318,7 +318,7 @@ def main(context):
 
     #TASK 4 and TASK 5
     def do_something(text):
-        return cleantext.sanitize(text)
+        return parser.sanitize(text)
 
     udf_func = udf(do_something, ArrayType(StringType()))
     dfTask4 = dfTask2.withColumn("udf_results", udf_func(col("body")))
@@ -388,7 +388,7 @@ def main(context):
 
     #TASK 4 and TASK 5
     def do_something(text):
-        return cleantext.sanitize(text)
+        return parser.sanitize(text)
 
     udf_func = udf(do_something, ArrayType(StringType()))
     dfTask9_1 = dfTask8.withColumn("udf_results", udf_func(col("body")))
@@ -442,6 +442,6 @@ if __name__ == "__main__":
     conf = conf.setMaster("local[*]")
     sc   = SparkContext(conf=conf)
     sqlContext = SQLContext(sc)
-    sc.addPyFile("cleantext.py")
-    import cleantext
+    sc.addPyFile("parser.py")
+    import parser
     main(sqlContext)
